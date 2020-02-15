@@ -1,0 +1,36 @@
+Phuong Vu
+NetID: pvu3
+StudentID: 30873216
+
+
+Files included:
+1. All files provided as a part of the homework assignment
+2. preprocessing.py: this is the code for processing all columns of the data set but the icd codes
+3. icd_preprocessing.py: this is the code for processing the icd codes.
+4. models.py: put all preprocessed data columns together into a huge input matrix, do train/validation/test split and feed into 3 models
+
+
+Runtime instruction:
+- Load the class's environment
+- In your terminal type python3 models.py to see the performance reports for all 3 models I constructed
+
+
+Preprocessing method:
+- For this dataset I preprocessed each individual columns, then assemble (np.stack) all of them into a huge input matrix.
+- For each category I either hot encoded them, or normalize them within (0,1) range.
+- Preprocessing the icd codes takes up lot of time for me. What I did was discarding both Dx Code 2 and Dx Code 3 columns as they contains too
+many NULL values. For Dx Code 1, I converted everything to icd10 format (this is more cumbersome than I thought, as there are some icd9 codes
+that are not even in the mappings.csv file, so I have to write tens of if conditionals to preprocess them individually). When I finally had a
+Dx Code 1 column of pure icd10 format, I group them and one-hot encoded them based on their frequency.
+- More details can be found in my preprocessing.py and icd_preprocessing.py files, as I included self-explanatory comments along the way.
+
+
+Train/validation/test split:
+- 70/15/15
+- I used sklearn's train_test_split function twice. More details in my models.py file
+
+
+Accuracy, precision and recall for each model I constructed can be retrieved by running the models.py file. Overall, I think my models have
+a decent performance.
+
+
